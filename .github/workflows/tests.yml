@@ -1,0 +1,24 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check Python syntax
+        run: python -m compileall -q main.py app.py profiling.py test_main.py practice scripts
+      - name: Test original ranking application
+        run: python -m unittest -v test_main
+      - name: Test ingestion, ranking validation, and replay progress
+        run: python -m unittest discover -s practice -p 'test_*.py' -v
