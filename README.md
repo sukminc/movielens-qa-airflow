@@ -63,6 +63,14 @@ Airflow scheduling.
 
 ## Original app quick start
 
+Once the local environment and data are prepared, run `make app` to open the
+Streamlit server at <http://127.0.0.1:8501>. Start Docker Desktop, then run
+`make airflow` for Airflow at <http://localhost:8080>. Use `make test` to run
+the 24 unit tests, `make replay` to inspect the next batch without advancing it,
+and `make airflow-stop` to stop Airflow while preserving its data.
+These shortcuts use `.venv` directly, so activating it is optional. On macOS,
+they also find Docker inside `/Applications/Docker.app` if it is absent from PATH.
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
